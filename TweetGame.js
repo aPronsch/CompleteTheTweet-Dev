@@ -7,6 +7,7 @@ function TweetGame(tweet) {
 	this.options = [0,0,0,0,0];
 	this.emoji = "";
 	this.userName = "player1";
+	this.tweetWithBlanks = "";
 
 	var utf = convertToUtf(this.tweet);
 	var emo = isolateEmoji(utf);
@@ -76,13 +77,13 @@ function generateOptions(emoji) {
 			//considering different possible prefixes
 	var offset = 0;
 	var usedVals = [];
-//	console.log("first: " + first);
 	if(first !== "\\ud83d") {
 		randomFlag = 1;
 		first = "\\ud83d";
 		for(var j = 1; j < 5; ++j) {
 			offset = Math.floor((Math.random() * 550));
 			usedVals[j-1] = offset;
+			// this loop checks for duplicate random values
 			for(var k = 0; k < 4; k++) {
 				if(offset === usedVals[k]) {
 					if(offset < 200) {
@@ -96,7 +97,6 @@ function generateOptions(emoji) {
 					k = 0;
 				}
 			}
-	//		console.log(offset);
 		}
 	}
 	for(var i = 1; i < 5; ++i) {
@@ -104,20 +104,16 @@ function generateOptions(emoji) {
 			newCode = lowerLimit + usedVals[i-1];
 		}
 		options[i] = String.fromCharCode(utfToUnicode(first));
-		//console.log("newCode: " + newCode);
 		if(newCode > lowerLimit && hitLow === 0) {
-//			console.log(1);
 			--newCode;
 			options[i] += String.fromCharCode(newCode);
 		}
 		else if(newCode === lowerLimit) {
-//			console.log(2)
 			hitLow = 1;
 			newCode = original + 1;
 			options[i] += String.fromCharCode(newCode);
 		}
-		else if (newCode < upperLimit) {
-//			console.log(3);
+		else if (newCode < upperLimit && newCode > lowerLimit) {
 			++newCode;
 			options[i] += String.fromCharCode(newCode);
 		}
@@ -196,10 +192,10 @@ function convertToUtf(str) {
 	var c = 1;
 	flag = 1;
 	for(var i = 0; i < str.length; i++) {
-		//stores each unicode into an array
+		//stores each utf-16 code into an array
 		temp = ("\\u" + ("000" + str[i].charCodeAt(0).toString(16)).substr(-4));
-		
-		//String.fromCharCode(str[i].charCodeAt(0))
+
+		//emojis come in 2 pieces this if statement makes sure they remain together
 		if( flag && temp > "\\ud83c" && i !== 0 && resUtf[i-c] > "\\ud83c") {
 			resUtf[i-c] += temp; 
 			c++;
@@ -218,27 +214,25 @@ function convertToUtf(str) {
 // return value is the utf-16 translation of the unicode for the emoji
 function isolateEmoji(unicode) {
 	var chosen = "";
-	var lowerLimit = "\\ude00";
-	var upperLimit = "\\ude4f";
 	for(var i = unicode.length - 1; i >= 0; i-- ) {
-			if(unicode[i].length > 6 && chosen === "") {
-				if(i === unicode.length) {
-					continue;
-				}
-				if(i > 0 && unicode[i-1] === "\\u200d" ||
-				  i < unicode.length -1 && unicode[i+1] === "\\u200d") {
-					continue;
-				}
-				else {
-					var prefix = "";
-					for(var j = 0; j < 6; ++j) {
-						prefix += unicode[i][j];
-					}
-					//if(prefix === "\\ud83d") {
-						chosen = unicode[i];
-					//}
-				}
+		if(unicode[i].length > 6 && chosen === "") {
+			if(i === unicode.length) {
+				continue;
 			}
+			// certain complex emojis have a joiner char 
+			// These complex emojis are ignored to make the process less complicated
+			if(i > 0 && unicode[i-1] === "\\u200d" ||
+			  i < unicode.length -1 && unicode[i+1] === "\\u200d") {
+				continue;
+			}
+			else {
+				var prefix = "";
+				for(var j = 0; j < 6; ++j) {
+					prefix += unicode[i][j];
+				}
+				chosen = unicode[i];
+			}
+		}	
 	}
 	return chosen;
 }
@@ -262,6 +256,5 @@ function test() {
 	console.log(game.options);
 	console.log(game.checkEmoji("😂"));
 	console.log(game.userName);
-
 }
 test();
