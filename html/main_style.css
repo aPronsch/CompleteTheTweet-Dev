@@ -1,0 +1,37 @@
+body {
+	background-color:#de0042;
+}
+
+.img {
+
+	margin: 0;
+	position: absolute;
+	height: 400px;
+	width: 400px;
+	top: 50%;
+	left: 50%;
+}
+
+.img #logo {
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.img #logo:hover {
+	-webkit-filter: saturate(0%) opacity(20%);
+	filter: saturate(0%) opacity(20%) brightness(0%);
+}
+
+.img #logo:active {
+	-webkit-filter: saturate(0%) opacity(15%);
+	filter: saturate(0%) opacity(15%);
+}
+
+.img #logo-click {
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+
+	visibility: hidden;
+  	opacity: 0;
+  	transition: visibility 0s 2s, opacity 1s linear;
+}
