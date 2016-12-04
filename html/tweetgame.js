@@ -219,7 +219,7 @@ function convertToUtf(str) {
 		temp = ("\\u" + ("000" + str[i].charCodeAt(0).toString(16)).substr(-4));
 
 		//emojis come in 2 pieces this if statement makes sure they remain together
-		if( flag && temp > "\\ud83c" && i !== 0 && resUtf[i-c] > "\\ud83c") {
+		if( flag && temp > "\\ud83c" && i !== 0 && resUtf[i-c] === "\\ud83d") {
 			resUtf[i-c] += temp; 
 			c++;
 			flag = 0;
