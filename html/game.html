@@ -4,6 +4,7 @@
 	<title>| Game</title>
 	<link rel="stylesheet" type="text/css" href="game_style.css" />
 	<link rel="icon"  href="src/icon.png" >
+	<script type="text/javascript" src="tweetgame.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -12,32 +13,50 @@
 		<img id="img" src = src/yellow.png alt="logo" width="100%" id="logo"/>
 	</div>
 
-	<div class= "tweet">
+	<div id = "user">Chris
+	</div>
+	<div id = "score">
+	</div>
+	<div id= "tweet">
 	</div>
 
-	<div class= "laugh">
+	<a onClick = "check('opt1'); return false;">
+	<div id= "opt1">
+		
 		😂
 	</div>
+	</a>
 
-	<div class= "cool">
+	<div id= "opt2">
 		😎
 	</div>
 
-	<div class= "heart">
+	<div id= "opt3">
 		😍
 	</div>
 
-	<div class= "smile">
+	<div id= "opt4">
 		😊
 	</div>
 
-	<div class= "tongue">
+	<div id= "opt5">
 		😜
 	</div>
 
-	<div class= "angry">
+	<div id= "opt6">
 		😡
 	</div>
 
+	<script>var game = new TweetGame("yo🤐🤐 y😴o y🤐yo😂💛😂👨‍👩‍👧‍👦");</script>
 
+	<script>
+	function check(fromWhere) {
+		var emoji = document.getElementById(fromWhere).innerHTML;
+		if (game.checkEmoji(emoji)) {
+			game.changeScore(5);
+		}
+
+		game.newGame("some😂 random words to ignore 🤐🤐🤴😥😕🙄🤡🤳🤐");
+	}
+</script>
 </body>

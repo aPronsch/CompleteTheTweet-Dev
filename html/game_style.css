@@ -22,7 +22,7 @@ body {
 	transform: translate(-50%, -50%);
 }
 
-.tweet {
+#tweet {
 	margin: 0;
 	padding: 0;
 	height: 25%;
@@ -33,9 +33,12 @@ body {
 	transform: translate(-50%, -50%);
 	left: 50%;
 	top: 35%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.laugh {
+#opt1 {
 	margin: 0;
 	padding: 0;
 	height: 5%;
@@ -51,7 +54,7 @@ body {
 	justify-content: center;
 }
 
-.cool {
+#opt2 {
 	margin: 0;
 	padding: 0;
 	height: 5%;
@@ -67,7 +70,7 @@ body {
 	justify-content: center;
 }
 
-.heart {
+#opt3 {
 	margin: 0;
 	padding: 0;
 	height: 5%;
@@ -83,7 +86,7 @@ body {
 	justify-content: center;
 }
 
-.smile {
+#opt4 {
 	margin: 0;
 	padding: 0;
 	height: 5%;
@@ -99,7 +102,7 @@ body {
 	justify-content: center;
 }
 
-.tongue {
+#opt5 {
 	margin: 0;
 	padding: 0;
 	height: 5%;
@@ -115,7 +118,7 @@ body {
 	justify-content: center;
 }
 
-.angry {
+#opt6 {
 	margin: 0;
 	padding: 0;
 	height: 5%;
@@ -131,26 +134,26 @@ body {
 	justify-content: center;
 }
 
-.laugh:hover {
+#opt1:hover {
 	background-color: #67b9ff;
 }
 
-.cool:hover {
+#opt2:hover {
 	background-color: #67b9ff;
 }
 
-.heart:hover {
+#opt3:hover {
 	background-color: #67b9ff;
 }
 
-.smile:hover {
+#opt4:hover {
 	background-color: #67b9ff;
 }
 
-.tongue:hover {
+#opt5:hover {
 	background-color: #67b9ff;
 }
 
-.angry:hover {
+#opt6:hover {
 	background-color: #67b9ff;
 }

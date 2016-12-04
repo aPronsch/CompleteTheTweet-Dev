@@ -35,3 +35,10 @@ body {
   	opacity: 0;
   	transition: visibility 0s 2s, opacity 1s linear;
 }
+
+.header {
+	margin: 0;
+	height: 50px;
+	width: auto;
+	color: #ffffff;
+}
