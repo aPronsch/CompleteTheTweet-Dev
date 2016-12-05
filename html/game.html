@@ -83,14 +83,14 @@
 		document.getElementById('score').style.color = "green";
 		if (game.checkEmoji(emoji)) {
 			game.changeScore(5
-			var valid = false;
-			while(!valid){
+			//var valid = false;
+			//while(!valid){
 				$.get('/requestTweet',function(data){
 						game.newGame(tweet);
-						valid = game.valid;
+					//	valid = game.valid;
 					//console.log(data);
 				});	
-			}
+			//}
 			
 		}
 		else {
