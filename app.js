@@ -27,6 +27,7 @@ var connection = db.createConnection({
 connection.connect(function(err){
 	if(err) {
 		console.error('could not connect: ' + err.stack);
+		return;
 	}	
 	console.log('connected as ' + connection.threadId);
 });
@@ -46,10 +47,11 @@ connection.query('SELECT text FROM tweets2',function(err,rows, fields){
 		}
 		
 	}
+	connection.destroy();
 	//console.log(tweets);		
 });
 
-connection.end();
+//connection.end();
 
 /*
 var query = connection.query('INSERT INTO scores SET ?', {name:'user1',score:'4'}, function(err, result){
