@@ -22,40 +22,54 @@
 
 	<a onClick = "check('opt1'); return false;">
 	<div id= "opt1">
-		
 		😂
 	</div>
 	</a>
 
+	<a onClick = "check('opt2'); return false;">
 	<div id= "opt2">
 		😎
 	</div>
+	</a>
 
+	<a onClick = "check('opt3'); return false;">
 	<div id= "opt3">
 		😍
 	</div>
+	</a>
 
+	<a onClick = "check('opt4'); return false;">
 	<div id= "opt4">
 		😊
 	</div>
+	</a>
 
+	<a onClick = "check('opt5'); return false;">
 	<div id= "opt5">
 		😜
 	</div>
+	</a>
 
+	<a onClick = "check('opt6'); return false;">
 	<div id= "opt6">
 		😡
 	</div>
+	</a>
 
 	<script>var game = new TweetGame("yo🤐🤐 y😴o y🤐yo😂💛😂👨‍👩‍👧‍👦");</script>
 
 	<script>
 	function check(fromWhere) {
 		var emoji = document.getElementById(fromWhere).innerHTML;
+		document.getElementById('score').style.color = "green";
 		if (game.checkEmoji(emoji)) {
 			game.changeScore(5);
 		}
-
+		else {
+			game.score = 0;
+			document.getElementById('score').innerHTML = game.score;
+			document.getElementById('score').style.color = "red";
+		}
 		game.newGame("some😂 random words to ignore 🤐🤐🤴😥😕🙄🤡🤳🤐");
 	}
 </script>

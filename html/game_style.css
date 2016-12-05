@@ -23,6 +23,7 @@ body {
 }
 
 #tweet {
+	font-family: "Comic Sans MS";
 	margin: 0;
 	padding: 0;
 	height: 25%;
@@ -156,4 +157,36 @@ body {
 
 #opt6:hover {
 	background-color: #67b9ff;
+}
+
+#user {
+	margin: 0;
+	padding: 0;
+	height: 5%;
+	width: 12%;
+	position: absolute;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	left: 50px;
+	top: 65px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Comic Sans MS";
+}
+
+#score {
+	margin: 0;
+	padding: 0;
+	height: 5%;
+	width: 12%;
+	position: absolute;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	left: 100px;
+	top: 65px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Comic Sans MS";
 }
