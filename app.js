@@ -19,17 +19,19 @@ var connection = db.createConnection({
     user: "b523da0e107d81",
     password: "86c0e612",
     database: 'ad_107932f38ff9af6',
-    encoding: 'utf8mb4'
+    encoding: 'utf8mb4',
+    connectionTimeout:'5000'
 });
 
+	
 connection.connect(function(err){
 	if(err) {
 		console.error('could not connect: ' + err.stack);
-		return;
-	}
-
+	}	
 	console.log('connected as ' + connection.threadId);
 });
+	
+
 
 var tweets = [];
 
@@ -67,9 +69,10 @@ app.get('/requestTweet',function(req,res){
 	console.log(tweets.length);
 	var ind = Math.floor(Math.random() * tweets.length);
 	console.log(ind);
-	toSend = tweets[ind];
+	var toSend = tweets[ind];
 	console.log(toSend);
 	res.send(toSend);
+	connection.destroy();
 	
 });
 
@@ -77,9 +80,10 @@ app.get('/requestTweet',function(req,res){
 var appEnv = cfenv.getAppEnv();
 
 // start server on the specified port and binding host
-app.listen(appEnv.port, '0.0.0.0', function() {
+var server = app.listen(appEnv.port, '0.0.0.0', function() {
   // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
 });
+
 
 
