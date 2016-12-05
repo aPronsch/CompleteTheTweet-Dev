@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<head>
+	<title>| Username</title>
+	<link rel="stylesheet" type="text/css" href="user_style.css" />
+	<link rel="icon"  href="src/icon.png" >
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body>
+	<div class= "header">
+		<a href="index.html">
+		<img id="img" src = src/yellow.png alt="logo" width="100%" id="logo"/>
+		</a>
+	</div>
+
+	<div id="username">
+	What is your name?
+	</div>
+
+	<input type="text" id="input">
+
+	<a onClick= "gotogame(); return false;">
+	<div id="button">
+		Go!
+	</div>
+	</a>
+
+	<script>
+	function gotogame() {
+		var name = document.getElementById("input").value;
+		window.location.href = 'game.html';
+		localStorage.setItem("userName", name);
+	}
+</script>
+
+</body>

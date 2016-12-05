@@ -10,10 +10,15 @@
 
 <body>
 	<div class= "header">
+		<a href="index.html">
 		<img id="img" src = src/yellow.png alt="logo" width="100%" id="logo"/>
+		</a>
 	</div>
 
-	<div id = "user">Chris
+	<div id = "user">
+		<script type="text/javascript">
+			document.getElementById('user').innerHTML = localStorage.getItem("userName")
+		</script>
 	</div>
 	<div id = "score">
 	</div>

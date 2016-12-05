@@ -6,7 +6,7 @@ function TweetGame(tweet) {
 	this.score = 0;
 	this.options = [0,0,0,0,0,0];
 	this.emoji = "";
-	this.userName = "player1";
+	this.userName = document.getElementById("user").innerHTML;
 	this.tweetWithBlanks = "";
 
 	var utf = convertToUtf(this.tweet);
@@ -265,7 +265,7 @@ function test() {
 	game.changeScore(5);
 	game.changeUserName("Matt");
 	console.log(game.score);
-	document.getElementById("tweet").style.backgroundColor = "#ffffff";
+
 	document.getElementById("tweet").innerHTML = game.tweetWithBlanks;
 	console.log(game.emoji);
 	console.log(game.options);
