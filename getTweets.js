@@ -4,24 +4,24 @@
 // node.js starter application for Bluemix
 //------------------------------------------------------------------------------
 
-var $ = require('jquery');
-
 var db = require('mysql');
 
 var twitter = require('twitter');
 
 var emojiData = require('emoji-data');
 
-process.env.TWITTER_KEY = 'r4GUQ7qbMYKKZJlo3MTw7QbyE';
-process.env.TWITTER_SECRET = 'gAcNb592MTYKP2kwkKl60rbjfIvT7ENipiGQ14AZBK1MGzKLOa';
-process.env.TWITTER_ACCESS_KEY = '805606589545742336-EZKbaIcBiAiKfXrJJ7R54J6lYHGSAwc';
-process.env.TWITTER_ACCESS_SECRET = 'ZqS1z32o9It3gdilg4rIfiDNMqf7bXxNMTKtD9Ind1muJ';
+var fs = require('fs');
+var keyFile = process.argv[2];
+var keys = [];
+var client;
+file = fs.readFileSync(keyFile,'utf8');
+keys = file.split(',');
 
-var client = new twitter({
-	consumer_key: process.env.TWITTER_KEY,
-	consumer_secret: process.env.TWITTER_SECRET,
-	access_token_key: process.env.TWITTER_ACCESS_KEY,
-	access_token_secret: process.env.TWITTER_ACCESS_SECRET
+client = new twitter({
+	consumer_key: keys[0],
+	consumer_secret: keys[1],
+	access_token_key: keys[2],
+	access_token_secret: keys[3]
 });
 
 
@@ -44,12 +44,12 @@ connection.connect(function(err){
 });
 
 var count = 0;
-var max = 1;
+var max = 20;
 var tweets = [];
 var stream = client.stream('statuses/sample',{language:'en'}, function(stream){
 	stream.on('data', function(event) {
 	  
-	  if(count <= max && emojiData.scan(event.text) != ''){
+	  if(count <= max && emojiData.scan(event.text) != '' && !event.text.includes("'")){
 	  	//console.log();
 	  	tweets.push(encodeURIComponent(event.text));
 	  	//console.log(tweets);
@@ -63,9 +63,9 @@ var stream = client.stream('statuses/sample',{language:'en'}, function(stream){
 
 			console.log(insertQuery);
 			var query = connection.query(insertQuery,function(err,result){
-				if(err) {connection.end(); throw err;}
+				if(err) {connection.destroy(); throw err;}
 				console.log(result.insertId);
-				connection.end();
+				connection.destroy();
 				
 			});
 		
@@ -75,7 +75,7 @@ var stream = client.stream('statuses/sample',{language:'en'}, function(stream){
 	});
 	 
 	stream.on('error', function(error) {
-		connection.end();
+		connection.destroy();
 	  throw error;
 	});
 });
