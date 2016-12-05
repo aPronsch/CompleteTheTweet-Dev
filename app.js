@@ -12,8 +12,6 @@ var express = require('express');
 // for more info, see: https://www.npmjs.com/package/cfenv
 var cfenv = require('cfenv');
 
-var $ = require('jquery');
-
 var db = require('mysql')
 
 var connection = db.createConnection({
