@@ -76,3 +76,36 @@ body {
 #button:hover {
 	background-color: #67b9ff;
 }
+
+#leaderboard {
+	font-family: "Comic Sans MS";
+	font-size: 20px;
+	margin: 0;
+	padding: 0;
+	height: 5%;
+	width: 20%;
+	background-color: #ffffff;
+	position: absolute;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	left: 50%;
+	top: 10%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#back {
+	margin: 0;
+	padding: 0;
+	height: 5%;
+	width: 50px;
+	position: absolute;
+	-webkit-transform: translate(0, -50%);
+	transform: translate(0, -50%);
+	top: 65px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: "Comic Sans MS";
+}

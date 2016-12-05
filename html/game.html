@@ -20,8 +20,14 @@
 			document.getElementById('user').innerHTML = localStorage.getItem("userName")
 		</script>
 	</div>
+	<a href="leaderboard.html">
 	<div id = "score">
+		<script type="text/javascript">
+			document.getElementById('score').innerHTML = localStorage.getItem("score");
+		</script>
 	</div>
+	</a>
+
 	<div id= "tweet">
 	</div>
 
@@ -75,6 +81,7 @@
 			document.getElementById('score').innerHTML = game.score;
 			document.getElementById('score').style.color = "red";
 		}
+		localStorage.setItem("score", game.score);
 		game.newGame("some😂 random words to ignore 🤐🤐🤴😥😕🙄🤡🤳🤐");
 	}
 </script>

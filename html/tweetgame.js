@@ -17,8 +17,6 @@ function TweetGame(tweet) {
 	positions = findEmojis(utf, emo);
 	this.tweetWithBlanks = rebuildStringWithBlanks(utf, emo, positions);
 
-	document.getElementById("score").innerHTML = this.score;
-	document.getElementById("user").innerHTML = this.userName;
 	document.getElementById("opt1").innerHTML = this.options[0];
 	document.getElementById("opt2").innerHTML = this.options[1];
 	document.getElementById("opt3").innerHTML = this.options[2];
