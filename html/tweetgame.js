@@ -8,9 +8,13 @@ function TweetGame(tweet) {
 	this.emoji = "";
 	this.userName = document.getElementById("user").innerHTML;
 	this.tweetWithBlanks = "";
+	this.valid = true;
 
 	var utf = convertToUtf(this.tweet);
 	var emo = isolateEmoji(utf);
+	if(emo === "") {
+		this.valid = false;	
+	}
 	this.options = generateOptions(emo);
 	this.emoji = translateEmoji(emo);
 	this.options[0] = this.emoji;
@@ -46,9 +50,13 @@ TweetGame.prototype.newGame = function(tweet) {
 	this.tweet = tweet;
 	this.options = [0,0,0,0,0,0];
 	this.emoji = "";
+	this.valid = true;
 
 	var utf = convertToUtf(this.tweet);
 	var emo = isolateEmoji(utf);
+	if(emo === "") {
+		this.valid = false;	
+	}
 	this.options = generateOptions(emo);
 	this.emoji = translateEmoji(emo);
 	this.options[0] = this.emoji;
