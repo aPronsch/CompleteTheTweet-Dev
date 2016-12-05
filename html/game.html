@@ -82,11 +82,16 @@
 		var emoji = document.getElementById(fromWhere).innerHTML;
 		document.getElementById('score').style.color = "green";
 		if (game.checkEmoji(emoji)) {
-			game.changeScore(5);
-			$.get('/requestTweet',function(data){
-				game.newGame(data);
-				console.log(data);
-			});
+			game.changeScore(5
+			var valid = false;
+			while(!valid){
+				$.get('/requestTweet',function(data){
+						game.newGame(tweet);
+						valid = game.valid;
+					//console.log(data);
+				});	
+			}
+			
 		}
 		else {
 			game.score = 0;
